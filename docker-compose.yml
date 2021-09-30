@@ -1,0 +1,43 @@
+version: '3.9'
+services: 
+  app:
+    build: 
+      context: .
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        APP_DATABASE_PASSWORD: ${APP_DATABASE_PASSWORD}
+    networks:
+      - shakuro
+    ports: 
+      - 3080:3000
+    volumes: 
+      - ".:/home/docker/app"
+  db:
+    image: postgres:13.2
+    environment: 
+      POSTGRES_PASSWORD: ${APP_DATABASE_PASSWORD}
+    networks:
+      - shakuro
+    volumes: 
+      - shakuro_db:/var/lib/postgresql/data
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+        - 8095:8080
+    environment:
+        SWAGGER_JSON: /swagger/swagger.yml
+    volumes:
+        - "./swagger:/swagger"
+  code_coverage:
+    image: nginx
+    ports: 
+      - 8096:80
+    volumes:
+      - ./coverage:/usr/share/nginx/html:ro
+
+networks: 
+  shakuro:
+
+volumes: 
+  shakuro_db:
