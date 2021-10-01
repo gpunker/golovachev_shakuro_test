@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_123448) do
+ActiveRecord::Schema.define(version: 2021_10_01_052421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "publisher_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -34,17 +36,29 @@ ActiveRecord::Schema.define(version: 2021_09_30_123448) do
   end
 
   create_table "publishers", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stores", force: :cascade do |t|
+    t.integer "amount", default: 0
+    t.bigint "book_id", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_stores_on_book_id"
+    t.index ["shop_id"], name: "index_stores_on_shop_id"
+  end
+
+  add_foreign_key "stores", "books"
+  add_foreign_key "stores", "shops"
 end
