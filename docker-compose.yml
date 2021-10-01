@@ -35,6 +35,12 @@ services:
       - 8096:80
     volumes:
       - ./coverage:/usr/share/nginx/html:ro
+  adminer:
+    image: adminer
+    networks:
+      - shakuro
+    ports:
+        - 8080:8080
 
 networks: 
   shakuro:
