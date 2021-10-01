@@ -17,5 +17,6 @@
 class Shop < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
+  has_many :stores
   has_many :books, through: :stores
 end

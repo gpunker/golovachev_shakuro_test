@@ -22,5 +22,6 @@ class Book < ApplicationRecord
   validates :title, presence: true
 
   belongs_to :publisher
+  has_many :stores
   has_many :shops, through: :stores
 end
