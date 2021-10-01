@@ -36,9 +36,9 @@ publishers = [
 ]
 
 shops = [
-	{ name: 'Amazon' },
-	{ name: 'Ozon' },
-	{ name: 'Labirint' }
+  { name: 'Amazon' },
+  { name: 'Ozon' },
+  { name: 'Labirint' }
 ]
 
 publishers.each do |p|
@@ -53,10 +53,10 @@ end
 books = Book.all
 
 shops.each_with_index do |s, index|
-	shop = Shop.create(name: s[:name])
-	store = Store.create([
-		{ amount: (rand 0..10), shop: shop, book: books[0 + index] },
-		{ amount: (rand 0..10), shop: shop, book: books[3 + index] },
-		{ amount: (rand 0..10), shop: shop, book: books[6 + index] }
-	])
+  shop = Shop.create(name: s[:name])
+  Store.create([
+                 { amount: (rand 0..10), shop: shop, book: books[0 + index] },
+                 { amount: (rand 0..10), shop: shop, book: books[3 + index] },
+                 { amount: (rand 0..10), shop: shop, book: books[6 + index] }
+               ])
 end
