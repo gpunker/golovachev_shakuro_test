@@ -10,55 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_052421) do
-
+ActiveRecord::Schema.define(version: 20_211_001_052_421) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "books", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "publisher_id"
-    t.index ["publisher_id"], name: "index_books_on_publisher_id"
+  create_table 'books', force: :cascade do |t|
+    t.string 'title', null: false
+    t.string 'slug'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.bigint 'publisher_id'
+    t.index ['publisher_id'], name: 'index_books_on_publisher_id'
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string "slug", null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  create_table 'friendly_id_slugs', force: :cascade do |t|
+    t.string 'slug', null: false
+    t.integer 'sluggable_id', null: false
+    t.string 'sluggable_type', limit: 50
+    t.string 'scope'
+    t.datetime 'created_at'
+    t.index %w[slug sluggable_type scope], name: 'index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope',
+                                           unique: true
+    t.index %w[slug sluggable_type], name: 'index_friendly_id_slugs_on_slug_and_sluggable_type'
+    t.index %w[sluggable_type sluggable_id], name: 'index_friendly_id_slugs_on_sluggable_type_and_sluggable_id'
   end
 
-  create_table "publishers", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'publishers', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'slug'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'shops', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'slug'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "stores", force: :cascade do |t|
-    t.integer "amount", default: 0
-    t.bigint "book_id", null: false
-    t.bigint "shop_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_stores_on_book_id"
-    t.index ["shop_id"], name: "index_stores_on_shop_id"
+  create_table 'stores', force: :cascade do |t|
+    t.integer 'amount', default: 0
+    t.bigint 'book_id', null: false
+    t.bigint 'shop_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_stores_on_book_id'
+    t.index ['shop_id'], name: 'index_stores_on_shop_id'
   end
 
-  add_foreign_key "stores", "books"
-  add_foreign_key "stores", "shops"
+  add_foreign_key 'stores', 'books'
+  add_foreign_key 'stores', 'shops'
 end

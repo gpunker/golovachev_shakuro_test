@@ -21,7 +21,7 @@
 #
 class Store < ApplicationRecord
   validates :amount, presence: true
-  
+
   belongs_to :book
   belongs_to :shop
 end

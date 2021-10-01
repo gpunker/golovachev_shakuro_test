@@ -9,6 +9,6 @@
 #  updated_at :datetime         not null
 #
 class Shop < ApplicationRecord
-	validates :name, presence: true
-	has_many :books, through: :stores
+  validates :name, presence: true
+  has_many :books, through: :stores
 end

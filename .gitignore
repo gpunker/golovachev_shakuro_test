@@ -28,3 +28,4 @@
 
 vendor/bundler
 .env
+settings.json

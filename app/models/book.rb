@@ -14,8 +14,8 @@
 #  index_books_on_publisher_id  (publisher_id)
 #
 class Book < ApplicationRecord
-	validates :title, presence: true
+  validates :title, presence: true
 
-	belongs_to :publisher
-	has_many :shops, through: :stores
+  belongs_to :publisher
+  has_many :shops, through: :stores
 end
