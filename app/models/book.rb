@@ -16,6 +16,9 @@
 #  index_books_on_publisher_id  (publisher_id)
 #
 class Book < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates :title, presence: true
 
   belongs_to :publisher
