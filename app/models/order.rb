@@ -22,4 +22,7 @@
 #  fk_rails_...  (shop_id => shops.id)
 #
 class Order < ApplicationRecord
+  validates :amount, presence: true
+  belongs_to :shop
+  belongs_to :book
 end

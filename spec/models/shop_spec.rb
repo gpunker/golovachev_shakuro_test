@@ -7,6 +7,7 @@
 #  id         :bigint           not null, primary key
 #  name       :string           not null
 #  slug       :string
+#  total_sold :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -7,5 +7,9 @@ Rails.application.routes.draw do
       get '/', to: 'publishers#index', as: 'publishers_index'
       get '/:slug', to: 'publishers#show', as: 'publishers_show'
     end
+
+    scope '/shops' do
+      post '/:id/order', to: 'shops#order', as: 'shops_order'
+    end
   end
 end
