@@ -35,12 +35,15 @@ services:
       - 8096:80
     volumes:
       - ./coverage:/usr/share/nginx/html:ro
-  adminer:
-    image: adminer
+  pg_admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: ${APP_DATABASE_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: gpunker@gmail.com
     networks:
       - shakuro
     ports:
-        - 8080:8080
+        - 8080:80
 
 networks: 
   shakuro:
