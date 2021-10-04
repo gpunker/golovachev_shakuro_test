@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_001_064_906) do
+ActiveRecord::Schema.define(version: 20_211_004_051_750) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20_211_001_064_906) do
                                            unique: true
     t.index %w[slug sluggable_type], name: 'index_friendly_id_slugs_on_slug_and_sluggable_type'
     t.index %w[sluggable_type sluggable_id], name: 'index_friendly_id_slugs_on_sluggable_type_and_sluggable_id'
+  end
+
+  create_table 'orders', force: :cascade do |t|
+    t.integer 'amount', default: 1
+    t.bigint 'book_id', null: false
+    t.bigint 'shop_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_orders_on_book_id'
+    t.index ['shop_id'], name: 'index_orders_on_shop_id'
   end
 
   create_table 'publishers', force: :cascade do |t|
@@ -63,6 +73,8 @@ ActiveRecord::Schema.define(version: 20_211_001_064_906) do
     t.index ['shop_id'], name: 'index_stores_on_shop_id'
   end
 
+  add_foreign_key 'orders', 'books'
+  add_foreign_key 'orders', 'shops'
   add_foreign_key 'stores', 'books'
   add_foreign_key 'stores', 'shops'
 end

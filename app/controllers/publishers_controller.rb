@@ -19,9 +19,9 @@ class PublishersController < ApplicationController
       inner join stores st on sh.id = st.shop_id
       inner join books b on b.id = st.book_id
       inner join publishers p on p.id = b.publisher_id
-      where p.slug like '#{params[:slug]}'").
-      to_a.
-      group_by { |i| i['name']}
+      where p.slug like '#{params[:slug]}'")
+                 .to_a
+                 .group_by { |i| i['name'] }
     @shop_keys = @shops.keys
     render 'publishers/show'
   end
