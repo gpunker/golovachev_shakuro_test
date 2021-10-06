@@ -29,4 +29,8 @@
 vendor/bundler
 .env
 settings.json
-coverage
+/coverage/*
+!/coverage/.keep
+
+/swagger/*
+!/swagger/.keep
