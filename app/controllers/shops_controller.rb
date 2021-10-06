@@ -4,7 +4,7 @@
 class ShopsController < ApplicationController
   # Creates a new order
   def order
-    @shop, @book, @order = ShopService.make_order(params[:id], params[:book_id], params[:amount])
+    @shop, @book, @order = ShopService.make_order(params[:id].to_i, params[:book_id], params[:amount])
     render 'shops/order'
   rescue StandardError => e
     @message = e.message

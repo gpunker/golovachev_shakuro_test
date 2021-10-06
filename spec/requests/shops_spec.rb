@@ -5,8 +5,25 @@ require 'rails_helper'
 RSpec.describe 'Shops', type: :request do
   describe 'GET /order' do
     it 'returns http success' do
-      get '/shops/order'
+      params = {
+        book_id: 1,
+        amount: 1
+      }
+
+      expect(ShopService).to receive(:make_order)
+        .with(1, 1, 1)
+        .and_return([Shop.new(name: 'Amazon'), Book.new(title: 'How to live?'), Order.new(id: 1, amount: 1)])
+        .exactly(1).times
+
+      get '/api/shops/1/order', params: params, as: :json
+      body = JSON.parse(response.body)
+
       expect(response).to have_http_status(:success)
+      expect(body.is_a?(Hash)).to eq true
+      expect(body['order_id']).to eq 1
+      expect(body['shop']).to eq 'Amazon'
+      expect(body['book']).to eq 'How to live?'
+      expect(body['amount']).to eq 1
     end
   end
 end
