@@ -31,6 +31,3 @@ vendor/bundler
 settings.json
 /coverage/*
 !/coverage/.keep
-
-/swagger/*
-!/swagger/.keep

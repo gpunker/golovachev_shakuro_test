@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Shops', type: :request do
   describe 'GET /order' do
-    it 'returns http success' do
+    it 'returns http created' do
       params = {
         book_id: 1,
         amount: 1
@@ -18,7 +18,7 @@ RSpec.describe 'Shops', type: :request do
       get '/api/shops/1/order', params: params, as: :json
       body = JSON.parse(response.body)
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:created)
       expect(body.is_a?(Hash)).to eq true
       expect(body['order_id']).to eq 1
       expect(body['shop']).to eq 'Amazon'
