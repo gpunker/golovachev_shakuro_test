@@ -48,3 +48,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'rubocop-rails', '~> 2.12'
 
 gem 'friendly_id', '~> 5.4'
+
+gem "simplecov", "~> 0.21.2", :group => :test

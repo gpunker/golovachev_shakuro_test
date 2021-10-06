@@ -29,3 +29,4 @@
 vendor/bundler
 .env
 settings.json
+coverage
